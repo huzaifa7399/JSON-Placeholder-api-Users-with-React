@@ -4,7 +4,6 @@ import Details from "./components/Details"
 import Modal from "./components/Modal"
 import AddTask from "./components/AddUser"
 
-
 function App() {
 
   return (

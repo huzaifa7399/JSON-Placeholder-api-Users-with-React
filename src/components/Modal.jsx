@@ -10,17 +10,17 @@ const Modal = () => {
     }
     let localUser = JSON.parse(localStorage.getItem('userDetails')) ? JSON.parse(localStorage.getItem('userDetails')) : JSON.parse(localStorage.getItem('users'))
     console.log(localUser)
-    const { id, name, username, email, phone, address, website } = localUser
+    const { id, name, username, email, phone, company, website } = localUser
     return (
-        <><div className="editData" >
+        <><div className="editData">
             <h1 >REACT FETCH</h1>
-            <h3>ID:{id ? id : 11}</h3><br />
-            <h3>Name:{name}</h3><br />
-            <h3>Username:{username}</h3><br />
-            <h3>Email:{email}</h3><br />
-            <h3>Phone:{phone}</h3><br />
-            <h3>Address:{address}</h3><br />
-            <h3>Website:{website}</h3><br />
+            <h3>ID: {id ? id : 11}</h3><br />
+            <h3>Name: {name}</h3><br />
+            <h3>Username: {username}</h3><br />
+            <h3>Email: {email}</h3><br />
+            <h3>Phone: {phone}</h3><br />
+            <h3>Company: {company}</h3><br />
+            <h3>Website: {website}</h3><br />
             <a className="btn bg-light text-dark" onClick={detailsBtn}>Reset</a>
         </div>
         </>

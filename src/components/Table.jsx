@@ -2,26 +2,23 @@ import { useNavigate } from 'react-router-dom'
 import Header from './Header'
 import AddUser from "./AddUser"
 import React, { useEffect, useState } from 'react'
+import Table from 'react-bootstrap/Table';
 
 
 
-const Table = () => {
-    const [showAddTask, setShowAddTask] = useState(false)
-
+const TableDisplay = () => {
+    const [showAddTask,] = useState(false)
     const navigate = useNavigate()
     const [data, setData] = useState([])
-    const [postdata, setPostdata] = useState([])
 
-    const api = async () => {
+    const fetchDetails = async () => {
         await fetch('https://jsonplaceholder.typicode.com/users')
             .then(response => response.json())
             .then(apiData => {
                 setData(apiData)
             })
     }
-    useEffect(() => {
-        api()
-    }, [])
+
     const deleteData = async (id) => {
 
         console.log('delete', id)
@@ -59,17 +56,20 @@ const Table = () => {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data)
-                setPostdata(data)
+                setData(data)
 
             })
 
     }
+    useEffect(() => {
+        fetchDetails()
+    }, [])
     return (
         <>
             <div className="editData">
                 <Header onAdd={() => navigate('/add-user')} showAdd={showAddTask} />
                 {showAddTask && <AddUser onAdd={addTask} />}
-                <table className='table table-dark table-striped'>
+                <Table striped bordered hover variant="dark">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -80,7 +80,6 @@ const Table = () => {
                     </thead>
                     <tbody>
                         {
-
                             data?.map((d) => {
                                 return (
                                     <tr key={d.id} className='tableData' onDoubleClick={() => deleteData(d.id)}>
@@ -93,11 +92,11 @@ const Table = () => {
                             })
                         }
                     </tbody>
-                </table>
+                </Table>
 
             </div>
         </>
     )
 }
 
-export default Table
+export default TableDisplay
